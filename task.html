@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Task</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .task-form-container {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 350px;
+    }
+    .task-form-container h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    input, textarea, select, button {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .message {
+      text-align: center;
+      margin-top: 1rem;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <div class="task-form-container">
+    <h2>Create Task</h2>
+    <input type="text" id="title" placeholder="Task Title" required>
+    <textarea id="description" placeholder="Task Description" rows="3"></textarea>
+    <input type="date" id="dueDate">
+    <select id="assignee">
+      <option value="">Assign to (optional)</option>
+      <option value="user1">User 1</option>
+      <option value="user2">User 2</option>
+    </select>
+    <button onclick="createTask()">Save Task</button>
+    <div class="message" id="message"></div>
+  </div>
+
+  <script>
+    function createTask() {
+      const title = document.getElementById('title').value.trim();
+      const description = document.getElementById('description').value.trim();
+      const dueDate = document.getElementById('dueDate').value;
+      const assignee = document.getElementById('assignee').value;
+      const message = document.getElementById('message');
+
+      if (!title) {
+        alert('Task title is required.');
+        return;
+      }
+
+      const task = { title, description, dueDate, assignee };
+      console.log("Task Created:", task);
+      message.textContent = 'Task successfully created!';
+
+      document.getElementById('title').value = '';
+      document.getElementById('description').value = '';
+      document.getElementById('dueDate').value = '';
+      document.getElementById('assignee').value = '';
+    }
+  </script>
+</body>
+</html>
